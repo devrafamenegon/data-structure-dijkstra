@@ -22,11 +22,7 @@ int main() {
   
   cout << "Menor distancia entre V0 e V5 = " << grafo->getDistancia(5) << endl;
 
-  for (int vertice = 0; vertice < grafo->getNVertices(); vertice++) {
-    cout << "Distancia (V0 -> V" << vertice << ") = " << grafo->getDistancia(vertice) << " => Caminho ";
-    grafo->imprimeCaminho(vertice);
-    cout << endl;
-  }
+  grafo->imprimirResultados();
 
   return 0;
 }
