@@ -1,27 +1,32 @@
 #include <iostream>
 
-#include "dfs.cpp"
+#include "djikstra.cpp"
 
 using namespace std;
 
 int main() {
-  DFS *grafo = new DFS(5);
-  grafo->criaAresta(0, 1, 2);
-  grafo->criaAresta(1, 2, 4);
-  grafo->criaAresta(2, 0, 12);
-  grafo->criaAresta(2, 4, 40);
-  grafo->criaAresta(3, 1, 3);
-  grafo->criaAresta(4, 3, 8);
+  DIJKSTRA* grafo = new DIJKSTRA(6);
 
-  grafo->getArranjoVertices()[0].setChave(10);
-  grafo->getArranjoVertices()[1].setChave(11);
-  grafo->getArranjoVertices()[2].setChave(11);
-  
+  grafo->criaAresta(0, 1, 10);
+  grafo->criaAresta(0, 2, 5);
+  grafo->criaAresta(2, 1, 3);
+  grafo->criaAresta(1, 3, 1);
+  grafo->criaAresta(2, 3, 8);
+  grafo->criaAresta(2, 4, 2);
+  grafo->criaAresta(4, 5, 6);
+  grafo->criaAresta(3, 5, 4);
+  grafo->criaAresta(3, 4, 4);
   grafo->imprime();
 
-  grafo->profundidade(9);
-  grafo->profundidade(10);
-  grafo->profundidade(11);
+  grafo->dijkstra(0);
   
+  cout << "Menor distancia entre V0 e V5 = " << grafo->getDistancia(5) << endl;
+
+  for (int vertice = 0; vertice < grafo->getNVertices(); vertice++) {
+    cout << "Distancia (V0 -> V" << vertice << ") = " << grafo->getDistancia(vertice) << " => Caminho ";
+    grafo->imprimeCaminho(vertice);
+    cout << endl;
+  }
+
   return 0;
 }
